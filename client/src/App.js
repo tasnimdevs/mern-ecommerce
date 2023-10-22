@@ -1,12 +1,28 @@
 import React from "react";
-import Layout from "./components/Layout/Layout";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Policy from "./pages/Policy";
+import PageNotFound from "./pages/PageNotFound";
+import SignUp from "./pages/auth/SignUp";
+import LogIn from "./pages/auth/LogIn";
+/* import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; */
+
 
 const App = () => {
   return (
     <>
-      <Layout>
-        <h1>App</h1>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/logIn" element={<LogIn />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/policy" element={<Policy />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </>
   );
 };
