@@ -8,25 +8,25 @@ export const registerController = async (req, res) => {
     const { name, email, password, phone, address } = req.body;
 
     if (!name) {
-      return res.send({ error: "Name is Required" });
+      return res.send({ message: "Name is Required" });
     }
     if (!email) {
-      return res.send({ error: "email is Required" });
+      return res.send({ message: "email is Required" });
     }
     if (!password) {
-      return res.send({ error: "password is Required" });
+      return res.send({ message: "password is Required" });
     }
     if (!phone) {
-      return res.send({ error: "phone is Required" });
+      return res.send({ message: "phone is Required" });
     }
     if (!address) {
-      return res.send({ error: "address is Required" });
+      return res.send({ message: "address is Required" });
     }
 
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
       return res.status(200).send({
-        success: true,
+        success:  false,
         message: "Already Register please login",
       });
     }

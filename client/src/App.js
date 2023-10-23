@@ -7,9 +7,10 @@ import Policy from "./pages/Policy";
 import PageNotFound from "./pages/PageNotFound";
 import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
+import Dashboard from "./pages/user/Dashboard";
+import PrivateRoute from "./components/routes/Private";
 /* import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; */
-
 
 const App = () => {
   return (
@@ -18,6 +19,10 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/logIn" element={<LogIn />} />
+
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<Dashboard />} />
+        </Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />

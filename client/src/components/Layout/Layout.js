@@ -2,8 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 
 
 const Layout = (props) => {
@@ -28,7 +27,7 @@ const Layout = (props) => {
 
       <Header />
       <main style={{ flexBasis: "100%" }}>
-        <ToastContainer />
+        <Toaster />
         {props.children}
         </main>
       <Footer  />
