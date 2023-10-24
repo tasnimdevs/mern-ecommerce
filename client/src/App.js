@@ -9,6 +9,7 @@ import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/routes/Private";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 /* import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; */
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/logIn" element={<LogIn />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="" element={<Dashboard />} />

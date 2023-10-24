@@ -8,10 +8,10 @@ import { useAuth } from "../../context/auth";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const [auth, setAuth] = useAuth()
+  const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,10 +24,10 @@ const [auth, setAuth] = useAuth()
         toast.success(res.data && res.data.message);
         setAuth({
           ...auth,
-          user:res.data.user,
-          token:res.data.token,
-        })
-        localStorage.setItem('auth', JSON.stringify(res.data))
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
@@ -66,9 +66,14 @@ const [auth, setAuth] = useAuth()
               placeholder="Enter password"
             />
           </div>
+          <div className="mb-3">
+            <button type="submit" className="btn btn-primary">
+              Log In
+            </button>
+          </div>
 
-          <button type="submit" className="btn btn-primary">
-            Log In
+          <button type="submit" className="btn btn-primary" onClick={()=>{navigate('/forgotPassword')}}>
+            Forgot your password?
           </button>
         </form>
       </div>

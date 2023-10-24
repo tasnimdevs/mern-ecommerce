@@ -10,6 +10,7 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const SignUp = () => {
         password,
         phone,
         address,
+        answer,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
@@ -87,6 +89,18 @@ const SignUp = () => {
 
           <div className="mb-3">
             <input
+              value={answer}
+              type="text"
+              className="form-control"
+              required
+              onChange={(e) => setAnswer(e.target.value)}
+              id="InputAnswer"
+              placeholder="What is your Favorite sports ?"
+            />
+          </div>
+          
+          <div className="mb-3">
+            <input
               value={password}
               type="password"
               className="form-control"
@@ -96,6 +110,7 @@ const SignUp = () => {
               placeholder="Create your password"
             />
           </div>
+          
 
           <button type="submit" className="btn btn-primary">
             Submit
