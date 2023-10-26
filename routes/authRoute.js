@@ -15,8 +15,6 @@ router.post("/login", loginController);
 
 router.post("/forgot-password", forgotPasswordController);
 
-
-
 router.get("/test", requireSignIn, isAdmin, testController);
 
 router.get("/user-auth", requireSignIn, (req, res) => {
