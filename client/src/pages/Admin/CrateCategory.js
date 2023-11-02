@@ -10,6 +10,8 @@ const CrateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
+  const [ selected, setSelected ] = useState(null)
+  const [ updatedName, setUpdatedName ] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +47,27 @@ const CrateCategory = () => {
     getAllCategory();
   }, []);
 
+  const handleUpdate = async (e) =>{
+    e.preventDefault();
+    try {
+      const {data}=await axios.put(
+        `api/v1/category/update-category/${selected._id}`,
+        {name:updatedName}
+      )
+      if (data.success) {
+        toast.success(data.message)
+        setSelected(null)
+        setUpdatedName("")
+        setVisible(false)
+        getAllCategory()
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error("Something went wrong")
+    }
+  }
+
   return (
     <Layout title={"Dashboard - Category Create"}>
       <div className="container-fluid m-3 p-3">
@@ -72,7 +95,11 @@ const CrateCategory = () => {
                           <td>
                             <button
                               className="btn btn-primary ms-2"
-                              onClick={() => setVisible(true)}
+                              onClick={() => {setVisible(true) ;
+                                 setUpdatedName(c.name)
+                                 setSelected(c)
+
+                              }}
                             >
                               Edit
                             </button>
@@ -95,7 +122,7 @@ const CrateCategory = () => {
               footer={null}
               open={visible}
             >
-              <CategoryForm />
+              <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate}/>
             </Modal>
           </div>
         </div>
