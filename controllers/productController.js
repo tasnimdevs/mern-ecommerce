@@ -2,6 +2,34 @@ import productModel from "../models/productModel.js";
 import fs from "fs";
 import slugify from "slugify";
 
+export const newProductPhotoController = async (req, res) => {
+  try {
+    console.log(req);
+    const product = await productModel
+      .findOne({ slug: req.params.slug })
+      .select("-photo")
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Single Product Fetched",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getitng single product",
+      error,
+    });
+  }
+
+  res.status(200).send({
+    success: true,
+    counTotal: 2,
+    message: "ALlProducts ",
+    products: [1, 2, 3],
+  });
+};
 export const createProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
@@ -63,7 +91,7 @@ export const getProductController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Erorr in getting products",
+      message: "Error in getting products",
       error: error.message,
     });
   }
@@ -77,14 +105,14 @@ export const getSingleProductController = async (req, res) => {
       .populate("category");
     res.status(200).send({
       success: true,
-      message: "single product fetched",
+      message: "Single Product Fetched",
       product,
     });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Error while getting single product",
+      message: "Error while getitng single product",
       error,
     });
   }
@@ -144,7 +172,11 @@ export const updateProductController = async (req, res) => {
           .status(500)
           .send({ error: "photo is Required and should be less then 1mb" });
     }
-    const products = await productModel.findByIdAndUpdate(req.params.pid,{ ...req.fields, slug: slugify(name) },{new:true});
+    const products = await productModel.findByIdAndUpdate(
+      req.params.pid,
+      { ...req.fields, slug: slugify(name) },
+      { new: true }
+    );
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;

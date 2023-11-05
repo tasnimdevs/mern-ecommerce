@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  //getall products
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get("/api/v1/product/get-product");
@@ -18,10 +17,10 @@ const Products = () => {
     }
   };
 
-  //lifecycle method
   useEffect(() => {
     getAllProducts();
   }, []);
+
   return (
     <Layout>
       <div className="row">
@@ -32,9 +31,11 @@ const Products = () => {
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2">
+              <div
+                className="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2"
+                key={p._id}
+              >
                 <Link
-                  key={p._id}
                   to={`/dashboard/admin/product/${p.slug}`}
                   className="product-link"
                 >

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 const { Option } = Select;
 
 const UpdateProduct = () => {
@@ -20,12 +20,16 @@ const UpdateProduct = () => {
   const [photo, setPhoto] = useState("");
   const [id, setId] = useState("");
 
-  //get single product
+  //get single product ${params.slug}
   const getSingleProduct = async () => {
     try {
+      // console.log(params);
       const { data } = await axios.get(
         `/api/v1/product/get-product/${params.slug}`
       );
+
+      console.log(data);
+
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
@@ -70,7 +74,7 @@ const UpdateProduct = () => {
       productData.append("quantity", quantity);
       photo && productData.append("photo", photo);
       productData.append("category", category);
-      const { data } = axios.post(
+      const { data } = axios.put(
         `/api/v1/product/update-product/${id}`,
         productData
       );
@@ -94,13 +98,14 @@ const UpdateProduct = () => {
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
-      toast.success("Product DEleted Succfully");
+      toast.success("Product Deleted Succfully");
       navigate("/dashboard/admin/products");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
+
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3">
