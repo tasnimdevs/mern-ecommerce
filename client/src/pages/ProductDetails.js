@@ -12,7 +12,6 @@ const ProductDetails = () => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
 
-
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
@@ -35,7 +34,7 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
- 
+
   return (
     <Layout>
       <div className="row container mt-2">
