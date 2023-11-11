@@ -19,14 +19,17 @@ import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders";
 import Products from "./pages/Admin/Products";
 import UpdateProduct from "./pages/Admin/UpdateProduct";
-/* import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; */
+import Search from "./pages/Search";
+import ProductDetails from "./pages/ProductDetails";
+
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/product/:slug" element={<ProductDetails />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/logIn" element={<LogIn />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />

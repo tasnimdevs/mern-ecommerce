@@ -32,7 +32,7 @@ const Products = () => {
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div
-                className="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-2"
+                className="col-12 col-sm-6 col-lg-4 col-xl-3 col-xxl-3"
                 key={p._id}
               >
                 <Link
