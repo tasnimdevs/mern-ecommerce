@@ -158,12 +158,12 @@ const HomePage = () => {
                     <p className="card-text">$ {p.price}</p>
                     <div className="d-flex text-nowrap justify-content-between">
                       <button
-                        className="btn btn-primary ms-1"
+                        className="btn btn-sm btn-primary ms-1"
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
                         More Details
                       </button>
-                      <button className="btn btn-secondary ms-1">
+                      <button className="btn btn-sm btn-secondary ms-1">
                         Add to Cart
                       </button>
                     </div>
