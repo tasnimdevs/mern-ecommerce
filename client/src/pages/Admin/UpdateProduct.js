@@ -28,7 +28,6 @@ const UpdateProduct = () => {
         `/api/v1/product/get-product/${params.slug}`
       );
 
-      console.log(data);
 
       setName(data.product.name);
       setId(data.product._id);
